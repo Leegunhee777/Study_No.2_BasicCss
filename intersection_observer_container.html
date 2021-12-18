@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    .container {
+      width: 600px;
+      height: 800px;
+      margin: 200px;
+      overflow-y: scroll;
+      background-color: lightyellow;
+    }
+
+    .box {
+      width: 300px;
+      height: 300px;
+      margin: 80px auto;
+      background-color: plum;
+      transition: 3000ms;
+    }
+
+    .box.active {
+      background-color: purple;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="box">1</div>
+    <div class="box">2</div>
+    <div class="box">3</div>
+    <div class="box">4</div>
+    <div class="box">5</div>
+    <div class="box">6</div>
+    <div class="box">7</div>
+    <div class="box">8</div>
+    <div class="box">9</div>
+    <div class="box">10</div>
+    <div class="box">11</div>
+    <div class="box">12</div>
+    <div class="box">13</div>
+    <div class="box">14</div>
+    <div class="box">15</div>
+    <div class="box">16</div>
+    <div class="box">17</div>
+    <div class="box">18</div>
+    <div class="box">19</div>
+    <div class="box">20</div>
+  </div>
+
+  <script>    const options = {
+      root: document.querySelector('.container'),// root를 container요소로 한정할경우, 브라우저크기 조절에 따른 요소의 등장과 사라짐에 대한 콜백은 발생하지 않으며,
+      //.container (부모요소)를 기준으로 사람짐과 등장에 대한 콜백이발생하게된다.
+    }
+    const boxes = document.querySelectorAll('.box');
+    const callback = (entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          console.log('들어옴')
+          entry.target.classList.add('active')
+        } else {
+          console.log('나감')
+          entry.target.classList.remove('active')
+        }
+      })
+
+    }
+    const observer = new IntersectionObserver(callback, options);
+    boxes.forEach(box => observer.observe(box))
+// observer객체의 observe함수를 통해, 특정한 요소가 화면에 들어오거나 나갈때 callback 함수를 발동시킬수있음
+// observe인자에 box 요소를 넘기고있으므로, box요소가 화면에 나가거나 보여질때, callback함수가 발동된다.</script>
+</body>
+
+</html>

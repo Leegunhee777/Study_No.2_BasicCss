@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <!-- https://developer.mozilla.org/en-US/docs/Web/CSS/box-sizing -->
+  <style>
+    .box {
+      width: 100px;
+      height: 100px;
+      background-color: red;
+    }
+
+    .inner {
+      width: 100%;
+      height: 100%;
+      background-color: blue;
+    }
+
+    .box2 {
+      /* box-sizing 이 (default) content-box이기 때문에,content사이즈를 기준으로 width, height 설정!!!!! content 너비와 높이가 100px이고, 
+        여기서 padding과 boder가 따로 추가되기 때문에, 전체적인 박스의크기는 너비와 높이가 100px보다 크다. */
+      padding: 20px;
+      box-sizing: content-box;
+      border: 10px solid black;
+    }
+
+    .box3 {
+      /* border-box를 더 통상적으로 많이 사용한다. */
+      /* box-sizeing 을 border-box 로하면 그 기준이 content가 아니라 border가 되기 때문에,
+        paading과 boder를 포함한 박스 전체의 너비와 높이가 100px , 100px 이된다. */
+      padding: 20px;
+      box-sizing: border-box;
+      border: 10px solid black;
+    }
+  </style>
+</head>
+
+<body>
+  <h3>Box without padding</h3>
+  <div class="box box1">
+    <div class="inner"></div>
+  </div>
+
+  <h3>Box with padding</h3>
+  <div class="box box2">
+    <div class="inner"></div>
+  </div>
+
+  <h3>Box with padding, boder-box</h3>
+  <div class="box box3">
+    <div class="inner"></div>
+  </div>
+</body>
+
+</html>
